@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: unitedassembly/unitedassembly.us  # CHANGE to your GitHub username/repo
+  repo: cferg/unitedassembly  # CHANGE to your GitHub username/repo
   branch: main
 
 media_folder: "assets/img/uploads"
