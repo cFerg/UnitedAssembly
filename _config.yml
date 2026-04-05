@@ -1,0 +1,35 @@
+title: United Assembly
+description: Researching, developing, and publishing model legislation for a more equitable America.
+url: "https://unitedassembly.us"
+baseurl: ""
+
+email: contact@unitedassembly.us
+github_username: unitedassembly
+
+# Build settings
+markdown: kramdown
+permalink: /blog/:year/:month/:day/:title/
+
+# Collections
+collections:
+  members:
+    output: true
+    permalink: /members/:name/
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+  - scope:
+      path: ""
+      type: "members"
+    values:
+      layout: "member"

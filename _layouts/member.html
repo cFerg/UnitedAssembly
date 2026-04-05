@@ -1,0 +1,41 @@
+---
+layout: default
+---
+<div class="profile-hero">
+  <div class="container" style="text-align:center;">
+    {% if page.photo %}
+      <img src="{{ page.photo }}" alt="{{ page.name }}" class="profile-avatar">
+    {% else %}
+      <div class="profile-avatar" style="display:flex;align-items:center;justify-content:center;background:var(--navy-mid);color:white;font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;margin:0 auto 1.25rem;">
+        {{ page.name | slice: 0 }}
+      </div>
+    {% endif %}
+    <h1 class="profile-name">{{ page.name }}</h1>
+    <p class="profile-role">{{ page.role }}</p>
+    {% if page.bio %}<p class="profile-bio">{{ page.bio }}</p>{% endif %}
+  </div>
+</div>
+
+<div class="profile-links">
+  {% if page.links %}
+    {% for link in page.links %}
+    <a href="{{ link.url }}" class="profile-link-btn {% if link.primary %}profile-link-btn--primary{% endif %}" {% if link.url contains 'http' %}target="_blank" rel="noopener"{% endif %}>
+      {% if link.icon %}{{ link.icon }} {% endif %}{{ link.label }}
+    </a>
+    {% endfor %}
+  {% endif %}
+
+  {% if page.email %}
+  <a href="mailto:{{ page.email }}" class="profile-link-btn">✉️ Email {{ page.name | split: ' ' | first }}</a>
+  {% endif %}
+
+  {% if page.twitter %}
+  <a href="https://twitter.com/{{ page.twitter }}" class="profile-link-btn" target="_blank" rel="noopener">𝕏 @{{ page.twitter }}</a>
+  {% endif %}
+
+  {% if page.linkedin %}
+  <a href="{{ page.linkedin }}" class="profile-link-btn" target="_blank" rel="noopener">💼 LinkedIn</a>
+  {% endif %}
+
+  <a href="/members/" class="profile-link-btn" style="margin-top:1rem; opacity:0.6; font-size:0.8rem;">← Back to all members</a>
+</div>

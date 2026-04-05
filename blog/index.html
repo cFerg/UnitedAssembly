@@ -1,0 +1,35 @@
+---
+layout: default
+title: Blog
+description: Updates, research, and news from United Assembly.
+---
+
+<div class="page-header">
+  <div class="container">
+    <h1>Blog &amp; Updates</h1>
+    <p>Research insights, policy explainers, program updates, and news from United Assembly.</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="container">
+    {% if site.posts.size > 0 %}
+    <div class="posts-grid">
+      {% for post in site.posts %}
+      <article class="post-card">
+        <div class="post-card__meta">{{ post.date | date: "%B %d, %Y" }}{% if post.category %} &middot; {{ post.category }}{% endif %}</div>
+        <h3 class="post-card__title"><a href="{{ post.url | relative_url }}" style="color:inherit">{{ post.title }}</a></h3>
+        <p class="post-card__excerpt">{{ post.excerpt | strip_html | truncatewords: 30 }}</p>
+        {% if post.author %}<div style="padding:0 1.5rem;font-size:0.8rem;color:var(--text-muted);">By {{ post.author }}</div>{% endif %}
+        <a href="{{ post.url | relative_url }}" class="post-card__link">Read More →</a>
+      </article>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div style="text-align:center; padding:5rem 2rem; color:var(--text-muted);">
+      <p style="font-size:1.1rem;">No posts yet — check back soon.</p>
+      <p>Members can publish posts through the <a href="/admin/">CMS dashboard</a>.</p>
+    </div>
+    {% endif %}
+  </div>
+</section>

@@ -1,0 +1,102 @@
+---
+layout: default
+title: Home
+description: United Assembly researches, develops, and publishes model legislation for a more equitable America.
+---
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero__inner">
+    <div class="hero__eyebrow">Civic Research &amp; Legislative Advocacy</div>
+    <h1>Building the Laws<br>America Deserves</h1>
+    <p class="hero__sub">United Assembly researches, drafts, and publishes model public legislation — and equips communities with the knowledge to advocate for change.</p>
+    <div class="hero__actions">
+      <a href="/programs/" class="btn btn--gold">View Our Programs</a>
+      <a href="/about/" class="btn btn--outline">Learn More</a>
+    </div>
+  </div>
+</section>
+
+<!-- PILLARS -->
+<section class="section section--alt">
+  <div class="container">
+    <div class="section__label">What We Do</div>
+    <h2 class="section__title">A Full-Spectrum Civic Organization</h2>
+    <p class="section__lead">From bill research to community outreach, United Assembly works across every stage of the legislative and civic process.</p>
+    <div class="pillars">
+      <div class="pillar">
+        <div class="pillar__icon">📋</div>
+        <h3>Policy Research</h3>
+        <p>We study the issues that affect everyday Americans and develop evidence-based model legislation for advocates and lawmakers.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar__icon">📝</div>
+        <h3>Bill Development</h3>
+        <p>Our team drafts comprehensive public bill proposals — like the Affordability Act — ready for introduction at state and federal levels.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar__icon">📣</div>
+        <h3>Public Awareness</h3>
+        <p>We publish plain-language explainers, host public conversations, and help communities understand the issues shaping their lives.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar__icon">🤝</div>
+        <h3>Civil Outreach</h3>
+        <p>We assist individuals and communities navigating civil issues, connecting them with resources and amplifying their voices.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED BILL -->
+<section class="section">
+  <div class="container">
+    <div class="section__label">Featured Program</div>
+    <div class="bill-card">
+      <div class="bill-card__content">
+        <span class="bill-card__badge">Active Proposal</span>
+        <h2>The Affordability Act</h2>
+        <p>Our flagship bill proposal addresses the growing affordability crisis facing American families — covering housing costs, everyday expenses, and economic equity. Read the full proposal and learn how to bring it to your representatives.</p>
+        <a href="https://affordact.com" target="_blank" rel="noopener" class="btn btn--gold">Read the Bill →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LATEST POSTS -->
+<section class="section section--alt">
+  <div class="container">
+    <div class="section__label">Latest Updates</div>
+    <h2 class="section__title">From the Blog</h2>
+    <div class="posts-grid">
+      {% for post in site.posts limit:3 %}
+      <article class="post-card">
+        <div class="post-card__meta">{{ post.date | date: "%B %d, %Y" }}{% if post.category %} &middot; {{ post.category }}{% endif %}</div>
+        <h3 class="post-card__title"><a href="{{ post.url | relative_url }}" style="color:inherit">{{ post.title }}</a></h3>
+        <p class="post-card__excerpt">{{ post.excerpt | strip_html | truncatewords: 28 }}</p>
+        <a href="{{ post.url | relative_url }}" class="post-card__link">Read More →</a>
+      </article>
+      {% endfor %}
+      {% if site.posts.size == 0 %}
+      <div style="grid-column:1/-1; text-align:center; padding:3rem; color:var(--text-muted);">
+        <p>Blog posts will appear here once published through the CMS.</p>
+      </div>
+      {% endif %}
+    </div>
+    {% if site.posts.size > 0 %}
+    <div style="text-align:center; margin-top:2.5rem;">
+      <a href="/blog/" class="btn btn--navy">All Posts</a>
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section section--dark">
+  <div class="container" style="text-align:center;">
+    <div class="section__label" style="text-align:center;">Get Involved</div>
+    <h2 style="color:white; margin-bottom:1rem;">Join the Assembly</h2>
+    <p style="color:rgba(255,255,255,0.65); max-width:500px; margin:0 auto 2rem;">United Assembly is volunteer-driven and community-powered. Help us research, advocate, and build a more equitable America.</p>
+    <a href="/contact/" class="btn btn--gold">Volunteer With Us</a>
+  </div>
+</section>

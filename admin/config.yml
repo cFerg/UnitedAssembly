@@ -1,0 +1,69 @@
+backend:
+  name: github
+  repo: unitedassembly/unitedassembly.us  # CHANGE to your GitHub username/repo
+  branch: main
+
+media_folder: "assets/img/uploads"
+public_folder: "/assets/img/uploads"
+
+collections:
+  # ── BLOG POSTS ──
+  - name: "posts"
+    label: "Blog Posts"
+    folder: "_posts"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Author", name: "author", widget: "string", required: false }
+      - label: "Category"
+        name: "category"
+        widget: "select"
+        options: ["Policy", "Announcement", "Research", "Community", "Outreach", "Education"]
+        required: false
+      - { label: "Tags", name: "tags", widget: "list", required: false }
+      - { label: "Excerpt", name: "excerpt", widget: "text", required: false, hint: "Short summary shown on the blog index." }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  # ── MEMBER PROFILES ──
+  - name: "members"
+    label: "Members & Board"
+    folder: "_members"
+    create: true
+    slug: "{{name | slugify}}"
+    fields:
+      - { label: "Full Name", name: "name", widget: "string" }
+      - { label: "Role / Title", name: "role", widget: "string", hint: "e.g. President, Policy Researcher, Volunteer" }
+      - { label: "Board Member?", name: "board", widget: "boolean", default: false, hint: "Toggle on for Board of Directors members." }
+      - { label: "Photo", name: "photo", widget: "image", required: false }
+      - { label: "Bio", name: "bio", widget: "text", required: false }
+      - { label: "Email", name: "email", widget: "string", required: false }
+      - { label: "Twitter Handle", name: "twitter", widget: "string", required: false, hint: "Without the @" }
+      - { label: "LinkedIn URL", name: "linkedin", widget: "string", required: false }
+      - label: "Profile Links"
+        name: "links"
+        widget: "list"
+        required: false
+        hint: "Custom links shown on the member's profile page."
+        fields:
+          - { label: "Label", name: "label", widget: "string" }
+          - { label: "URL", name: "url", widget: "string" }
+          - { label: "Primary (highlighted)?", name: "primary", widget: "boolean", default: false }
+          - { label: "Icon / Emoji", name: "icon", widget: "string", required: false }
+
+  # ── PROGRAMS / BILLS ──
+  - name: "programs"
+    label: "Programs & Bills"
+    folder: "_programs"
+    create: true
+    slug: "{{title | slugify}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - label: "Status"
+        name: "status"
+        widget: "select"
+        options: ["Active", "In Development", "Completed", "Archived"]
+      - { label: "External URL", name: "url", widget: "string", required: false, hint: "If this program has its own site (e.g. affordact.com)" }
+      - { label: "Summary", name: "summary", widget: "text" }
+      - { label: "Body", name: "body", widget: "markdown", required: false }

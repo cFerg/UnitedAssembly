@@ -1,0 +1,66 @@
+---
+layout: default
+title: Board & Members
+description: Meet the team behind United Assembly.
+---
+
+<div class="page-header">
+  <div class="container">
+    <h1>Board &amp; Members</h1>
+    <p>The people building United Assembly — researchers, advocates, and community organizers working toward a more equitable America.</p>
+  </div>
+</div>
+
+<section class="section section--alt">
+  <div class="container">
+    <div class="section__label">Leadership</div>
+    <h2 class="section__title">Board of Directors</h2>
+
+    <div class="members-grid">
+      {% assign board = site.members | where: "board", true %}
+      {% for member in board %}
+      <div class="member-card">
+        {% if member.photo %}
+          <img src="{{ member.photo }}" alt="{{ member.name }}" class="member-card__avatar">
+        {% else %}
+          <div class="member-card__avatar--placeholder">{{ member.name | slice: 0 }}</div>
+        {% endif %}
+        <h3 class="member-card__name">{{ member.name }}</h3>
+        <p class="member-card__role">{{ member.role }}</p>
+        {% if member.bio %}<p class="member-card__bio">{{ member.bio | truncatewords: 20 }}</p>{% endif %}
+        <a href="{{ member.url | relative_url }}" class="member-card__link">View Profile →</a>
+      </div>
+      {% endfor %}
+      {% if board.size == 0 %}
+      <div style="grid-column:1/-1; text-align:center; padding:3rem; color:var(--text-muted); background:white; border:1px solid var(--border);">
+        <p>Board members will appear here once added through the CMS.</p>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% assign volunteers = site.members | where: "board", false %}
+{% if volunteers.size > 0 %}
+<section class="section">
+  <div class="container">
+    <div class="section__label">Team</div>
+    <h2 class="section__title">Volunteers &amp; Contributors</h2>
+    <div class="members-grid">
+      {% for member in volunteers %}
+      <div class="member-card">
+        {% if member.photo %}
+          <img src="{{ member.photo }}" alt="{{ member.name }}" class="member-card__avatar">
+        {% else %}
+          <div class="member-card__avatar--placeholder">{{ member.name | slice: 0 }}</div>
+        {% endif %}
+        <h3 class="member-card__name">{{ member.name }}</h3>
+        <p class="member-card__role">{{ member.role }}</p>
+        {% if member.bio %}<p class="member-card__bio">{{ member.bio | truncatewords: 20 }}</p>{% endif %}
+        <a href="{{ member.url | relative_url }}" class="member-card__link">View Profile →</a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}

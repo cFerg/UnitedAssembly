@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% if page.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+  <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}" />
+  <link rel="icon" href="{{ '/assets/img/favicon.png' | relative_url }}" type="image/png">
+  {% seo %}
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <nav class="nav-inner">
+      <a href="{{ '/' | relative_url }}" class="nav-logo">
+        <div class="nav-logo__mark">UA</div>
+        <span class="nav-logo__text">United Assembly</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="{{ '/about/' | relative_url }}">About</a></li>
+        <li><a href="{{ '/programs/' | relative_url }}">Programs</a></li>
+        <li><a href="{{ '/blog/' | relative_url }}">Blog</a></li>
+        <li><a href="{{ '/members/' | relative_url }}">Members</a></li>
+        <li><a href="https://affordact.com" target="_blank" rel="noopener" class="nav-cta">Affordability Act</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- CONTENT -->
+  <main>
+    {{ content }}
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="{{ '/' | relative_url }}" class="nav-logo">
+          <div class="nav-logo__mark">UA</div>
+          <span class="nav-logo__text">United Assembly</span>
+        </a>
+        <p>Researching, developing, and publishing model legislation for a more equitable America. Incorporated in the Commonwealth of Virginia.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Organization</h4>
+        <ul>
+          <li><a href="{{ '/about/' | relative_url }}">About Us</a></li>
+          <li><a href="{{ '/members/' | relative_url }}">Board & Members</a></li>
+          <li><a href="{{ '/about/#bylaws' | relative_url }}">Bylaws</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Programs</h4>
+        <ul>
+          <li><a href="https://affordact.com" target="_blank" rel="noopener">Affordability Act</a></li>
+          <li><a href="{{ '/programs/' | relative_url }}">All Programs</a></li>
+          <li><a href="{{ '/blog/' | relative_url }}">Blog & Updates</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Get Involved</h4>
+        <ul>
+          <li><a href="{{ '/volunteer/' | relative_url }}">Volunteer</a></li>
+          <li><a href="{{ '/contact/' | relative_url }}">Contact</a></li>
+          <li><a href="mailto:{{ site.email }}">{{ site.email }}</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; {{ 'now' | date: "%Y" }} United Assembly. All rights reserved.</span>
+      <span>Pending 501(c)(3) status &middot; Incorporated in Virginia</span>
+    </div>
+  </footer>
+
+  <script>
+    const toggle = document.getElementById('navToggle');
+    const links = document.getElementById('navLinks');
+    toggle.addEventListener('click', () => links.classList.toggle('open'));
+  </script>
+</body>
+</html>
