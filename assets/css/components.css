@@ -1,0 +1,390 @@
+/* ============================================================
+   COMPONENTS
+   Buttons, cards, pillars, post cards, member cards, forms
+   ============================================================ */
+
+/* ── BUTTONS ── */
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.75rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-radius: 3px;
+  transition: all 0.2s;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+
+.btn--gold {
+  background: var(--gold);
+  color: var(--navy-deep);
+  border-color: var(--gold);
+}
+
+.btn--gold:hover {
+  background: var(--gold-light);
+  border-color: var(--gold-light);
+  color: var(--navy-deep);
+}
+
+.btn--outline {
+  background: transparent;
+  color: var(--white);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.btn--outline:hover {
+  border-color: var(--white);
+  color: var(--white);
+}
+
+.btn--navy {
+  background: var(--navy-mid);
+  color: var(--white);
+  border-color: var(--navy-mid);
+}
+
+.btn--navy:hover {
+  background: var(--navy-deep);
+  border-color: var(--navy-deep);
+  color: var(--white);
+}
+
+/* ── PILLARS GRID ── */
+.pillars {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  margin-top: 3rem;
+  overflow: hidden;
+}
+
+.pillar {
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--gold);
+  padding: 2rem 1.75rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+  min-width: 0;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+.pillar:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.pillar__icon {
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+}
+
+.pillar h3 {
+  font-size: 1.15rem;
+  margin-bottom: 0.5rem;
+  color: var(--navy-deep);
+  overflow-wrap: break-word;
+}
+
+.pillar p {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin: 0;
+  overflow-wrap: break-word;
+}
+
+/* ── FEATURED BILL CARD ── */
+.bill-card {
+  background: var(--navy-mid);
+  color: var(--white);
+  padding: 3rem;
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  gap: 3rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.bill-card::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(201, 168, 76, 0.15), transparent 70%);
+  pointer-events: none;
+}
+
+.bill-card__badge {
+  display: inline-block;
+  background: var(--gold);
+  color: var(--navy-deep);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.75rem;
+  border-radius: 2px;
+  margin-bottom: 1rem;
+}
+
+.bill-card h2 {
+  color: var(--white);
+  margin-bottom: 1rem;
+  overflow-wrap: break-word;
+}
+
+.bill-card p {
+  color: rgba(255, 255, 255, 0.75);
+  margin-bottom: 1.5rem;
+  overflow-wrap: break-word;
+}
+
+.bill-card__content {
+  flex: 1;
+  min-width: 0;
+  width: 100%;
+  overflow-wrap: break-word;
+}
+
+/* ── BLOG POST CARDS ── */
+.posts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2.5rem;
+}
+
+.post-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+}
+
+.post-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.post-card__meta {
+  padding: 1.5rem 1.5rem 0;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.post-card__title {
+  padding: 0.5rem 1.5rem;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  color: var(--navy-deep);
+  line-height: 1.35;
+}
+
+.post-card__excerpt {
+  padding: 0.25rem 1.5rem 1.5rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  flex: 1;
+}
+
+.post-card__link {
+  display: block;
+  padding: 0.75rem 1.5rem;
+  background: var(--cream);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--navy-mid);
+  border-top: 1px solid var(--border);
+  transition: background 0.2s;
+}
+
+.post-card__link:hover {
+  background: var(--cream-dark);
+  color: var(--navy-mid);
+}
+
+/* ── MEMBER CARDS (directory) ── */
+.members-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 2rem;
+  margin-top: 2.5rem;
+}
+
+.member-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  padding: 2rem;
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.member-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.member-card__avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 1rem;
+  display: block;
+  border: 3px solid var(--gold);
+  background: var(--cream-dark);
+}
+
+.member-card__avatar--placeholder {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: var(--navy-mid);
+  color: var(--white);
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+  border: 3px solid var(--gold);
+}
+
+.member-card__name  { font-size: 1.1rem; margin-bottom: 0.25rem; }
+
+.member-card__role {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.75rem;
+}
+
+.member-card__bio {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  margin-bottom: 1.25rem;
+}
+
+.member-card__link {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--navy-mid);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.member-card__link:hover { color: var(--gold); }
+
+/* ── CONTACT INFO BLOCKS ── */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.contact-info-item {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.contact-info-item__icon { font-size: 1.5rem; flex-shrink: 0; }
+
+.contact-inquiry-block {
+  background: var(--white);
+  border: 1px solid var(--border);
+  padding: 1rem 1.25rem;
+}
+
+/* ── FORM ELEMENTS ── */
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.form-label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--navy-deep);
+}
+
+.form-label--optional {
+  font-weight: 400;
+  color: var(--text-muted);
+}
+
+.form-input,
+.form-textarea {
+  width: 100%;
+  padding: 0.65rem 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--text);
+  background: var(--cream);
+  transition: border-color 0.2s;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--navy-mid);
+}
+
+.form-textarea { resize: vertical; }
+
+.form-hint {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-top: 0.5rem;
+}
+
+.form-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--gold);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  background: var(--cream);
+  border: 1px solid var(--border);
+  padding: 0.4rem 0.75rem;
+  border-radius: 3px;
+}
+
+.checkbox-label input {
+  accent-color: var(--navy-mid);
+}

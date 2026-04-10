@@ -1,0 +1,87 @@
+/* ============================================================
+   BASE
+   Reset, typography, global element styles
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap');
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--cream);
+  color: var(--text);
+  line-height: 1.7;
+}
+
+/* -- Headings -- */
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  line-height: 1.25;
+  color: var(--navy-deep);
+}
+
+h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 700; }
+h2 { font-size: clamp(1.5rem, 3vw, 2.25rem); font-weight: 600; }
+h3 { font-size: 1.35rem; font-weight: 600; }
+h4 { font-size: 1.1rem; }
+
+/* -- Body copy -- */
+p {
+  margin-bottom: 1rem;
+  color: var(--text);
+}
+
+a {
+  color: var(--navy-mid);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+a:hover { color: var(--gold); }
+
+img, video, iframe {
+  max-width: 100%;
+  height: auto;
+}
+
+/* -- Utility -- */
+.tag {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  background: var(--cream-dark);
+  color: var(--navy-mid);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  margin-right: 0.35rem;
+  margin-bottom: 0.35rem;
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 3rem 0;
+}
+
+blockquote {
+  border-left: 4px solid var(--gold);
+  padding: 1rem 1.5rem;
+  background: var(--cream);
+  margin: 2rem 0;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--navy-mid);
+}

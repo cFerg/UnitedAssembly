@@ -5,8 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{% if page.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
   <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
-  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}" />
-  <link rel="icon" href="{{ '/assets/img/favicon.png' | relative_url }}" type="image/png">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="{{ '/assets/css/variables.css' | relative_url }}" />
+  <link rel="stylesheet" href="{{ '/assets/css/base.css' | relative_url }}" />
+  <link rel="stylesheet" href="{{ '/assets/css/layout.css' | relative_url }}" />
+  <link rel="stylesheet" href="{{ '/assets/css/components.css' | relative_url }}" />
+  <link rel="stylesheet" href="{{ '/assets/css/pages.css' | relative_url }}" />
+  <link rel="stylesheet" href="{{ '/assets/css/responsive.css' | relative_url }}" />
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/x-icon" href="{{ '/assets/img/favicon.ico' | relative_url }}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/img/favicon.png' | relative_url }}">
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ '/assets/img/apple-touch-icon.png' | relative_url }}">
+
+  <!-- Netlify Identity (required for CMS login) -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
   {% seo %}
 </head>
 <body>
@@ -50,7 +65,7 @@
         <h4>Organization</h4>
         <ul>
           <li><a href="{{ '/about/' | relative_url }}">About Us</a></li>
-          <li><a href="{{ '/members/' | relative_url }}">Board & Members</a></li>
+          <li><a href="{{ '/members/' | relative_url }}">Board &amp; Members</a></li>
           <li><a href="{{ '/about/#bylaws' | relative_url }}">Bylaws</a></li>
         </ul>
       </div>
@@ -59,7 +74,7 @@
         <ul>
           <li><a href="https://affordact.com" target="_blank" rel="noopener">Affordability Act</a></li>
           <li><a href="{{ '/programs/' | relative_url }}">All Programs</a></li>
-          <li><a href="{{ '/blog/' | relative_url }}">Blog & Updates</a></li>
+          <li><a href="{{ '/blog/' | relative_url }}">Blog &amp; Updates</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -78,9 +93,22 @@
   </footer>
 
   <script>
+    // Mobile nav toggle
     const toggle = document.getElementById('navToggle');
-    const links = document.getElementById('navLinks');
+    const links  = document.getElementById('navLinks');
     toggle.addEventListener('click', () => links.classList.toggle('open'));
+
+    // Netlify Identity redirect after login
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on('init', user => {
+        if (!user) {
+          window.netlifyIdentity.on('login', () => {
+            document.location.href = '/admin/';
+          });
+        }
+      });
+    }
   </script>
+
 </body>
 </html>
