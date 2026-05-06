@@ -32,15 +32,13 @@ description: Get in touch with United Assembly.
             <div class="contact-info-item__icon">📞</div>
             <div>
               <h4 style="margin-bottom:0.25rem;">Phone</h4>
-              <!-- REPLACE with real phone number -->
-              <a href="tel:+12762699768" style="color:var(--navy-mid); font-size:0.95rem;">(276) 269-9768</a>
+              <a href="tel:+12762699768">(276) 269-9768</a>
             </div>
           </div>
           <div class="contact-info-item">
             <div class="contact-info-item__icon">📍</div>
             <div>
               <h4 style="margin-bottom:0.25rem;">Mailing Address</h4>
-              <!-- REPLACE with real address -->
               <p style="font-size:0.95rem; color:var(--text-muted); margin:0;">
                 United Assembly<br>
                 448 Cummings St #273<br>
@@ -82,34 +80,96 @@ description: Get in touch with United Assembly.
         </div>
       </div>
 
-      <!-- MESSAGE FORM -->
+      <!-- CONTACT FORM -->
       <div>
         <div class="section__label">Send a Message</div>
         <h2 class="section__title" style="margin-bottom:2rem;">Write to Us</h2>
-        <div class="form-card">
+
+        <!-- Netlify Forms: data-netlify="true" enables form capture -->
+        <!-- The hidden input tells Netlify what to call this form -->
+        <form
+          name="contact"
+          method="POST"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          action="/contact/success/"
+          class="form-card"
+        >
+          <!-- Required hidden field for Netlify -->
+          <input type="hidden" name="form-name" value="contact" />
+
+          <!-- Honeypot — hidden from humans, bots fill it, Netlify discards those submissions -->
+          <p style="display:none;">
+            <label>Don't fill this out: <input name="bot-field" /></label>
+          </p>
+
+          <!-- Project source (auto-filled when coming from AA) -->
+          <input type="hidden" name="project" id="project-field" value="" />
+
           <div class="form-field">
-            <label class="form-label">Full Name</label>
-            <input type="text" class="form-input" placeholder="Your name">
+            <label class="form-label" for="contact-name">Full Name</label>
+            <input type="text" id="contact-name" name="name" class="form-input" placeholder="Your name" required />
           </div>
+
           <div class="form-field">
-            <label class="form-label">Email</label>
-            <input type="email" class="form-input" placeholder="you@email.com">
+            <label class="form-label" for="contact-email">Email</label>
+            <input type="email" id="contact-email" name="email" class="form-input" placeholder="you@email.com" required />
           </div>
+
           <div class="form-field">
-            <label class="form-label">Subject</label>
-            <input type="text" class="form-input" placeholder="What's this about?">
+            <label class="form-label" for="contact-subject">Subject</label>
+            <select id="contact-subject" name="subject" class="form-input">
+              <option value="">Select a topic…</option>
+              <option value="General Inquiry">General Inquiry</option>
+              <option value="Affordability Act Feedback">Affordability Act Feedback</option>
+              <option value="Volunteering">Volunteering</option>
+              <option value="Press & Media">Press &amp; Media</option>
+              <option value="Partnership">Partnership &amp; Collaboration</option>
+              <option value="Donation Inquiry">Donation / Support Inquiry</option>
+              <option value="Other">Other</option>
+            </select>
           </div>
+
           <div class="form-field">
-            <label class="form-label">Message</label>
-            <textarea rows="5" class="form-textarea" placeholder="Your message..."></textarea>
+            <label class="form-label" for="contact-message">Message</label>
+            <textarea id="contact-message" name="message" rows="5" class="form-textarea" placeholder="Your message…" required></textarea>
           </div>
+
           <div>
-            <a href="mailto:contact@unitedassembly.us" class="btn btn--navy">Send via Email →</a>
-            <p class="form-hint">Copy your message and send to <a href="mailto:contact@unitedassembly.us">contact@unitedassembly.us</a></p>
+            <button type="submit" class="btn btn--navy" style="cursor:pointer; font-family:inherit; width:100%;">
+              Send Message →
+            </button>
+            <p class="form-hint">We typically respond within 2–3 business days.</p>
           </div>
-        </div>
+        </form>
       </div>
 
     </div>
   </div>
 </section>
+
+<!-- Auto-fill project field from ?project= URL param (e.g. from AffordAct) -->
+<script>
+  (function () {
+    var params  = new URLSearchParams(window.location.search);
+    var project = params.get('project');
+    var subject = params.get('subject');
+
+    if (project) {
+      var pField = document.getElementById('project-field');
+      if (pField) pField.value = decodeURIComponent(project);
+    }
+
+    if (subject) {
+      var sField = document.getElementById('contact-subject');
+      if (sField) {
+        // Try to match to an existing option
+        var opts = Array.from(sField.options);
+        var match = opts.find(function (o) {
+          return o.value.toLowerCase().includes(decodeURIComponent(subject).toLowerCase());
+        });
+        if (match) sField.value = match.value;
+      }
+    }
+  })();
+</script>
