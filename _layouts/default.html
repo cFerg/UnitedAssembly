@@ -20,6 +20,11 @@
   <link rel="apple-touch-icon" sizes="180x180" href="{{ '/assets/img/apple-touch-icon.png' | relative_url }}">
 
   <!-- Netlify Identity (required for CMS login) -->
+   <script>
+    if (window.location.hash && window.location.hash.includes('invite_token')) {
+      window.location.href = '/admin/' + window.location.hash;
+    }
+  </script>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
   {% seo %}
