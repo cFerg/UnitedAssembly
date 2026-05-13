@@ -5,16 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex">
   <title>United Assembly CMS</title>
+  <!-- Identity widget loads first -->
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-</head>
-<body>
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <!-- Init with correct APIUrl BEFORE Decap CMS loads -->
   <script>
     if (window.netlifyIdentity) {
       window.netlifyIdentity.init({
         APIUrl: "https://netlify.unitedassembly.us/.netlify/identity"
       });
-
+    }
+  </script>
+</head>
+<body>
+  <!-- Decap CMS loads after Identity is already initialized -->
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <script>
+    if (window.netlifyIdentity) {
       window.netlifyIdentity.on('init', user => {
         if (!user) {
           window.netlifyIdentity.on('login', () => {
